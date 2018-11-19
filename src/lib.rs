@@ -25,11 +25,14 @@
 /// # extern crate unlikely;
 /// # struct Vec<T> { len: usize, capacity: usize, data: [T; 1] }
 /// # impl<T> Vec<T> {
-/// # fn reallocate(&mut self) {}
+/// # fn reallocate(&mut self) -> Result<(), ()> { Ok(()) }
 /// pub fn push(&mut self, item: T) {
 ///     if self.len == self.capacity {
 ///         // out of space, get more:
-///         unlikely!(self.reallocate());
+///         unlikely! {
+///             let result = self.reallocate();
+///             result.unwrap();
+///         }
 ///     }
 ///
 ///     // TODO: store `item`
@@ -39,10 +42,10 @@
 /// ```
 #[macro_export]
 macro_rules! unlikely {
-    ( $e:expr ) => {{
+    ( $($t:tt)* ) => {{
         fn _id<T>(t: T) -> T { t }
         _id(#[cold] || {
-            $e
+            $($t)*
         })()
     }};
 }
