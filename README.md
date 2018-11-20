@@ -1,5 +1,7 @@
 # An `unlikely` branch hint for stable Rust
 
+**NOTE: This does not currently work as intended (ie. has no effect)!**
+
 [![crates.io](https://img.shields.io/crates/v/unlikely.svg)](https://crates.io/crates/unlikely)
 [![docs.rs](https://docs.rs/unlikely/badge.svg)](https://docs.rs/unlikely/)
 [![Build Status](https://travis-ci.org/jonas-schievink/unlikely.svg?branch=master)](https://travis-ci.org/jonas-schievink/unlikely)
